@@ -6,12 +6,17 @@ import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   const [conversion, setConversion] = useState('')
+  const [convertible, setConvertible] = useState('')
 
 
   const convert = (convertible) => {
     fetch('/api/hello')
     .then((res) => res.json())
     .then(data => setConversion(data.name))
+  }
+
+  const updateInput = (event) => {
+    setConvertible(event.target.value)
   }
   return (
     <div className={styles.container}>
@@ -30,15 +35,18 @@ const Home: NextPage = () => {
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h2>Enter a Roman Numeral or an Integer&rarr;</h2>
-            <input type={'text'}></input>
+            <h2>Enter a Roman Numeral or Integer&rarr;</h2>
+            <div className={styles.form}>
+            <input type={'text'} onChange={updateInput}></input>
             <button onClick={convert}>CONVERT</button>
+            <p>{convertible}</p>
+            </div>
           </div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
+          <div className={styles.card}>
             
-            <p>Solution will appear here. {conversion}</p>
-          </a>
+            {conversion == '' ? <p>Conversion will appear here</p> : <p>{conversion}</p>}
+          </div>
 
         </div>
       </main>
@@ -49,7 +57,7 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Built by Sullivan Pierce, deployed with
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
