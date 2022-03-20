@@ -112,6 +112,7 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+  filter: invert(100%);
 }
 
 @media (max-width: 600px) {
