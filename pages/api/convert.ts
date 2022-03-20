@@ -18,7 +18,6 @@ const romanNumerals = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V
 const convertToRoman = (num) => {
   let newRomanNumeral: string = ''
   for(let numeral of romanNumerals) {
-    console.log(numeral)
     while(num >= romanValues[numeral]) {
       newRomanNumeral = newRomanNumeral + numeral
       num -= romanValues[numeral]
@@ -31,8 +30,8 @@ const convertToNum = (string) => {
 let romanValuesAlreadyChecked = {}
 let num = 0
 let index = 0
-for (let letter in string) {
-  if (string[index+1] in romanValuesAlreadyChecked) {
+for (let letter of string) {
+  if (romanValues[string[index+1]] > romanValues[string[index]]) {
     num -= romanValues[letter]
   } else {
     num += romanValues[letter]
@@ -40,6 +39,7 @@ for (let letter in string) {
   romanValuesAlreadyChecked[letter] = romanValues[letter]
   index ++
 }
+console.log(num)
 return num
 }
 
@@ -48,11 +48,15 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   let response = {conversion: ''}
+
   if (req.query.conversionType == 'toRoman') {
     response.conversion = convertToRoman(req.body.convertible)
-    console.log(convertToRoman(req.body.convertible))
-  } else {
+
+  } else if(req.query.conversionType == 'toNum') {
     response.conversion = convertToNum(req.body.convertible).toString()
+
+  } else {
+    response.conversion = "You have not entered a valid number or Roman Numeral"
   }
   res.status(200).json(response)
 }

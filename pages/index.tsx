@@ -10,7 +10,13 @@ const Home: NextPage = () => {
 
 
   const convert = () => {
-    fetch('/api/convert?conversionType=toRoman', {
+    let conversionType = ''
+    if (/^[0-9]+$/.test(convertible)){
+      conversionType = 'toRoman'
+    } else if (/^[MDCLXVI]+$/.test(convertible)) {
+      conversionType = "toNum"
+    }
+    fetch(`/api/convert?conversionType=${conversionType}`, {
       method: "POST",
       headers: {'Content-Type': "application/json"},
       body: JSON.stringify({"convertible": convertible})
