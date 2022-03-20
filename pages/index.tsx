@@ -8,9 +8,11 @@ const Home: NextPage = () => {
   const [conversion, setConversion] = useState('')
   const [convertible, setConvertible] = useState('')
 
-
+//this function handles submitting the item to be converted to the backend (while specifying 
+// the conversion type), then placing the conversion in state once received
   const convert = () => {
     let conversionType = ''
+    //using some regex for input validation/checking which way to convert
     if (/^[0-9]+$/.test(convertible)){
       conversionType = 'toRoman'
     } else if (/^[MDCLXVI]+$/.test(convertible)) {
@@ -39,6 +41,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+      
         <h1 className={styles.title}>
           When in Rome
         </h1>
@@ -46,16 +49,15 @@ const Home: NextPage = () => {
         <div className={styles.grid}>
           <div className={styles.card}>
             <h2>Enter a Roman Numeral or Integer&rarr;</h2>
-            <div className={styles.form}>
+            <div className={styles.grid}>
             <input type={'text'} onChange={updateInput}></input>
-            <button onClick={convert}>CONVERT</button>
-            <p>{convertible}</p>
+            <button className={styles.button} onClick={convert}>CONVERT</button>
             </div>
           </div>
 
           <div className={styles.card}>
             
-            {conversion == '' ? <p>Conversion will appear here</p> : <p>{conversion}</p>}
+            <div className={styles.grid}>{conversion == '' ? <p>Conversion will appear here.</p> : <p>{conversion}</p>}</div>
           </div>
 
         </div>
