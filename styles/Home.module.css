@@ -29,6 +29,9 @@
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  background-color: black;
+  color: white;
+  opacity: .7;
 }
 
 .title a {
