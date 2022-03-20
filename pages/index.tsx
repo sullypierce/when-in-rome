@@ -9,15 +9,21 @@ const Home: NextPage = () => {
   const [convertible, setConvertible] = useState('')
 
 
-  const convert = (convertible) => {
-    fetch('/api/hello')
+  const convert = () => {
+    fetch('/api/convert?conversionType=toRoman', {
+      method: "POST",
+      headers: {'Content-Type': "application/json"},
+      body: JSON.stringify({"convertible": convertible})
+    })
     .then((res) => res.json())
-    .then(data => setConversion(data.name))
+    .then(data => setConversion(data.conversion))
   }
 
+  //this function updates the state variables that hold the users input of integer or roman num
   const updateInput = (event) => {
     setConvertible(event.target.value)
   }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -30,8 +36,6 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>
           When in Rome
         </h1>
-
-        
 
         <div className={styles.grid}>
           <div className={styles.card}>
