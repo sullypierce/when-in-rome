@@ -55,8 +55,6 @@ export default function handler(
   } else if(req.query.conversionType == 'toNum') {
     response.conversion = convertToNum(req.body.convertible).toString()
 
-  } else {
-    response.conversion = "You have not entered a valid number or Roman Numeral"
-  }
+  } 
   res.status(200).json(response)
 }

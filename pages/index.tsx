@@ -8,16 +8,7 @@ const Home: NextPage = () => {
   const [conversion, setConversion] = useState('')
   const [convertible, setConvertible] = useState('')
 
-//this function handles submitting the item to be converted to the backend (while specifying 
-// the conversion type), then placing the conversion in state once received
-  const convert = () => {
-    let conversionType = ''
-    //using some regex for input validation/checking which way to convert
-    if (/^[0-9]+$/.test(convertible)){
-      conversionType = 'toRoman'
-    } else if (/^[MDCLXVI]+$/.test(convertible)) {
-      conversionType = "toNum"
-    }
+  const convert = (conversionType) => {
     fetch(`/api/convert?conversionType=${conversionType}`, {
       method: "POST",
       headers: {'Content-Type': "application/json"},
@@ -25,6 +16,26 @@ const Home: NextPage = () => {
     })
     .then((res) => res.json())
     .then(data => setConversion(data.conversion))
+  }
+
+//this function handles submitting the item to be converted to the backend (while specifying 
+// the conversion type), then placing the conversion in state once received
+  const validateInput = () => {
+    let conversionType = ''
+    //using some regex for input validation/checking which way to convert
+    if (/^[0-9]+$/.test(convertible)){
+      conversionType = 'toRoman'
+      convert(conversionType)
+    } else if (/^[MDCLXVI]+$/.test(convertible)) {
+      conversionType = "toNum"
+      convert(conversionType)
+    } else if  (/^[mdclxvi]+$/.test(convertible)) {
+      setConversion("Roman Numerals must be capitalized.")
+    }
+    else {
+      setConversion("You have not entered a valid number or Roman Numeral")
+    }
+    
   }
 
   //this function updates the state variables that hold the users input of integer or roman num
@@ -51,7 +62,7 @@ const Home: NextPage = () => {
             <h2>Enter a Roman Numeral or Integer&rarr;</h2>
             <div className={styles.grid}>
             <input type={'text'} onChange={updateInput}></input>
-            <button className={styles.button} onClick={convert}>CONVERT</button>
+            <button className={styles.button} onClick={validateInput}>CONVERT</button>
             </div>
           </div>
 

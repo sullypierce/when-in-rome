@@ -1,4 +1,4 @@
-When in Rome
+## When in Rome
 
 This app is deployed with Vercel, you can check it out here: https://when-in-rome-eight.vercel.app/
 
