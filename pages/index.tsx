@@ -61,7 +61,7 @@ const Home: NextPage = () => {
 
         <div className={styles.grid}>
           <div className={styles.card}>
-            <h2>Enter a Roman Numeral or Integer&rarr;</h2>
+            <h2>Enter a Roman Numeral or Integer:</h2>
             <div className={styles.grid}>
             <input type={'text'} onChange={updateInput}></input>
             <button className={styles.button} onClick={validateInput}>CONVERT</button>
