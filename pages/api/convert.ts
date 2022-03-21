@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { request } from 'http'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { stringify } from 'querystring'
 
 type Data = {
   conversion: string
@@ -26,6 +25,9 @@ const convertToRoman = (num) => {
   return newRomanNumeral
 }
 
+//this function converts numerals to integers by matching each letter to the corresponding value,
+//then either adding or subtracting it from the running total depending on if it is followed by a 
+//higher value numeral
 const convertToNum = (string) => {
 let romanValuesAlreadyChecked = {}
 let num = 0
@@ -48,7 +50,7 @@ export default function handler(
   res: NextApiResponse<Data>
 ) {
   let response = {conversion: ''}
-
+//checking the conversionType query that is sent with the request to perform the correct conversion
   if (req.query.conversionType == 'toRoman') {
     response.conversion = convertToRoman(req.body.convertible)
 

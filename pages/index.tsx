@@ -8,6 +8,8 @@ const Home: NextPage = () => {
   const [conversion, setConversion] = useState('')
   const [convertible, setConvertible] = useState('')
 
+  //this function handles submitting the item to be converted to the backend (while specifying 
+// the conversion type), then placing the conversion in state once received
   const convert = (conversionType) => {
     fetch(`/api/convert?conversionType=${conversionType}`, {
       method: "POST",
@@ -18,8 +20,8 @@ const Home: NextPage = () => {
     .then(data => setConversion(data.conversion))
   }
 
-//this function handles submitting the item to be converted to the backend (while specifying 
-// the conversion type), then placing the conversion in state once received
+//validates the users input and either sends the fetch with the correct conversionType or gives 
+//message to user that input was incorrect
   const validateInput = () => {
     let conversionType = ''
     //using some regex for input validation/checking which way to convert
@@ -80,7 +82,7 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Built by Sullivan Pierce, deployed with
+          Built by Sullivan Pierce with Next.js, deployed with
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>

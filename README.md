@@ -2,6 +2,8 @@
 
 This app is deployed with Vercel, you can check it out here: https://when-in-rome-eight.vercel.app/
 
+You can look at my answers to the post assignment questions here: https://docs.google.com/document/d/1j-plDowKLPP0awCLwTCRU3RghgOAx8Z7Ho4QM4g2kf4/edit?usp=sharing
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## To Run this project locally:
