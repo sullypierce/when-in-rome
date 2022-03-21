@@ -1,8 +1,16 @@
+When in Rome
+
+This app is deployed with Vercel, you can check it out here: https://when-in-rome-eight.vercel.app/
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## To Run this project locally:
 
-First, run the development server:
+git clone this repository
+
+run npm install
+
+then, run the development server:
 
 ```bash
 npm run dev
